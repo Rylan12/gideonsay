@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+import sys
+
+with open('gideon') as gideon_file:
+    GIDEON = gideon_file.read()
+
+
+def shift_gideon(offset):
+    output = ''
+    lines = GIDEON.split('\n')
+    for line in lines:
+        output += ''.join(' ' for _ in range(offset)) + line + '\n'
+    return output
+
+if __name__ == '__main__':
+    # Create text bubble
+    text = ' '.join(sys.argv[1:])
+    border = ' ' + ''.join('-' for _ in range(len(text) + 2))
+    text_bubble = border + '\n< ' + text + ' >\n' + border
+
+    print(text_bubble)
+    print(shift_gideon(len(border) // 2))
